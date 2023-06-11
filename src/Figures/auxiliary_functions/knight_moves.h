@@ -1,5 +1,5 @@
-#ifndef CHESS_SAMPLE_STRAIGHT_LINES_H
-#define CHESS_SAMPLE_STRAIGHT_LINES_H
+#ifndef KNIGHT_MOVES_H
+#define KNIGHT_MOVES_H
 
 
 #include "../../structures/pos.h"
@@ -9,4 +9,4 @@
 void check_knight_moves(pos pos, bool is_white, Positions& possible_moves, Board& board);
 
 
-#endif //CHESS_SAMPLE_STRAIGHT_LINES_H
+#endif //KNIGHT_MOVES_H

@@ -40,5 +40,5 @@ target_include_directories(
         src/Figures/Queen/
         src/Figures/Rook/
         src/Figures/auxiliary_functions/
-        src/Board/Board.h
+        src/Board/
 )

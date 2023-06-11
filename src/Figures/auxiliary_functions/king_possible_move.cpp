@@ -13,7 +13,7 @@
 //! position - coordinates of a cell we want to check
 //! is_white - color of the King
 //! enemy_positions - Positions (class) of positions we have to check for an enemy
-bool is_possible_move(pos position, bool is_white, Positions& enemy_positions, Board& board) {
+bool is_possible_move(pos position, bool is_white, Positions &enemy_positions, Board &board) {
     //! For possible moves of an enemy
     Positions pos_moves = Positions(64);
 

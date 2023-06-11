@@ -36,7 +36,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
         //! Add the move if it is possible
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -50,7 +50,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -64,7 +64,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -78,7 +78,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -92,7 +92,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -106,7 +106,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -120,7 +120,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
@@ -134,10 +134,9 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
         check_straight_lines(cur_pos, is_white(), enemy_positions, board);
         check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (king_possible_move(cur_pos, is_white(), cur_pos, enemy_positions, board)) {
+        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
 
 }
-
