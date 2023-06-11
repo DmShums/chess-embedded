@@ -1,13 +1,14 @@
-//
-// Created by Shuma on 25.04.2023.
-//
-
 #ifndef TEST_INO_KNIGHT_H
 #define TEST_INO_KNIGHT_H
 
 
-class Knight {
+#include "Figure.h"
 
+class Knight: public Figure{
+public:
+    Knight(int x, int y, bool is_white);
+
+    void possible_moves(Positions& possible_moves, Board& board) override;
 };
 
 

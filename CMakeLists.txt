@@ -1,33 +1,44 @@
-# !!! WARNING !!! AUTO-GENERATED FILE, PLEASE DO NOT MODIFY IT AND USE
-# https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
-#
-# If you need to override existing CMake configuration or add extra,
-# please create `CMakeListsUser.txt` in the root of project.
-# The `CMakeListsUser.txt` will not be overwritten by PlatformIO.
+cmake_minimum_required(VERSION 3.23)
+project(chess_sample)
 
-cmake_minimum_required(VERSION 3.13)
-set(CMAKE_SYSTEM_NAME Generic)
-set(CMAKE_C_COMPILER_WORKS 1)
-set(CMAKE_CXX_COMPILER_WORKS 1)
+set(CMAKE_CXX_STANDARD 17)
 
-project("test_ino" C CXX)
+#add_executable(chess_sample main.cpp)
+add_executable(chess_sample main.cpp
+        src/Board/Board.cpp
+        src/Board/Board.h
+        src/Figures/Bishop/Bishop.cpp
+        src/Figures/Bishop/Bishop.h
+        src/Figures/King/King.cpp
+        src/Figures/King/King.h
+        src/Figures/Knight/Knight.cpp
+        src/Figures/Knight/Knight.h
+        src/Figures/Pawn/Pawn.cpp
+        src/Figures/Pawn/Pawn.h
+        src/Figures/Queen/Queen.cpp
+        src/Figures/Queen/Queen.h
+        src/Figures/Rook/Rook.cpp
+        src/Figures/Rook/Rook.h
+        src/Figures/Figure/Figure.cpp
+        src/Figures/Figure/Figure.h
+        src/structures/pos.h
+        src/Figures/auxiliary_functions/diagonals.cpp
+        src/Figures/auxiliary_functions/diagonals.h
+        src/Figures/auxiliary_functions/straight_lines.cpp
+        src/Figures/auxiliary_functions/straight_lines.h
+        src/Figures/auxiliary_functions/knight_moves.cpp
+        src/Figures/auxiliary_functions/knight_moves.h src/Figures/auxiliary_functions/king_possible_move.cpp src/Figures/auxiliary_functions/king_possible_move.h)
 
-include(CMakeListsPrivate.txt)
-
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/CMakeListsUser.txt)
-include(CMakeListsUser.txt)
-endif()
-
-add_custom_target(
-    Production ALL
-    COMMAND platformio -c clion run "$<$<NOT:$<CONFIG:All>>:-e${CMAKE_BUILD_TYPE}>"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+target_include_directories(
+        chess_sample
+        PUBLIC
+        src/Figures/Bishop/
+        src/Figures/Figure/
+        src/Figures/King/
+        src/Figures/Knight/
+        src/Figures/Pawn/
+        src/Figures/Queen/
+        src/Figures/Rook/
+        src/Figures/auxiliary_functions/
+        src/Board/Board.h
 )
-
-add_custom_target(
-    Debug ALL
-    COMMAND platformio -c clion debug "$<$<NOT:$<CONFIG:All>>:-e${CMAKE_BUILD_TYPE}>"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-)
-
-add_executable(Z_DUMMY_TARGET ${SRC_LIST})

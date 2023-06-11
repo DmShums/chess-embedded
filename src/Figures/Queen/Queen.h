@@ -1,13 +1,14 @@
-//
-// Created by Shuma on 25.04.2023.
-//
-
 #ifndef TEST_INO_QUEEN_H
 #define TEST_INO_QUEEN_H
 
 
-class Queen {
+#include "Figure.h"
 
+class Queen: public Figure {
+public:
+    Queen(int x, int y, bool is_white);
+
+    void possible_moves(Positions &possible_moves, Board &board) override;
 };
 
 

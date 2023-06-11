@@ -1,13 +1,14 @@
-//
-// Created by Shuma on 25.04.2023.
-//
-
 #ifndef TEST_INO_ROOK_H
 #define TEST_INO_ROOK_H
 
 
-class Rook {
+#include "Figure.h"
 
+class Rook: public Figure {
+public:
+    Rook(int x, int y, bool is_white);
+
+    void possible_moves(Positions &possible_moves, Board &board) override;
 };
 
 
