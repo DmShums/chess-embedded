@@ -48,6 +48,8 @@ Board::Board() {
         }
     }
 
+    board[4][4] = new King(4, 4, true);
+
 }
 
 // N: Do we still need it?

@@ -4,6 +4,7 @@
 
 #include "../structures/pos.h"
 #include "Figure.h"
+#include "cstdlib"
 
 class Figure;
 class Board{
@@ -20,7 +21,9 @@ public:
     ~Board() {
         for(auto & i : board){
             for(auto & j : i){
-                if (j != nullptr) free(j);
+                if (j != nullptr) {
+                    free(j);
+                };
             }
         }
     }
