@@ -24,6 +24,16 @@ public:
     pos get_position();
     //! Set new position to the figure
     void new_position(int x, int y);
+    //! Return ID of a figure
+    /*!
+     * King - 1
+     * Queen - 2
+     * Bishop - 3
+     * Knight - 4
+     * Rook - 5
+     * Pawn - 6
+     */
+    virtual int figure_id() = 0;
     //! Virtual to call this method on the corresponding figure
     //! 0 to not implement here
     virtual void possible_moves(Positions& possible_moves, Board& board) = 0;

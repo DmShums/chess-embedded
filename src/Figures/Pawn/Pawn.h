@@ -18,6 +18,7 @@ public:
 
     // change the argument possible_moves that is passed
     void possible_moves(Positions& possible_moves, Board& board) override;
+    int figure_id() override;
 };
 
 

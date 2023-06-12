@@ -48,7 +48,7 @@ Board::Board() {
         }
     }
 
-    board[4][4] = new King(4, 4, true);
+    board[4][4] = new Pawn(4, 4, true);
 
 }
 
