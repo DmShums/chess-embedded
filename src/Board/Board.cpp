@@ -1,4 +1,4 @@
-#include <iostream>
+// #include <iostream>
 #include "Board.h"
 #include "Bishop.h"
 #include "Knight.h"
@@ -52,28 +52,17 @@ Board::Board() {
 
 }
 
-// N: Do we still need it?
-//Board::Board() {
-//    // Fill the chessboard with some initial values
-//    for (int row = 0; row < 8; row++) {
-//        for (int col = 0; col < 8; col++) {
-//            auto* figure = new Figure('w', true);
-//            board[row][col] = figure;
-//            board[row][col] = nullptr;
-//        }
-//    }
-//}
 
 // Temporary function to print board. I have a bit changed it, so it prints a number of each row
-void Board::print_board() {
-    for (int row = 0; row < 8; row++) {
-        std::cout << row << " ";
-        for (int col = 0; col < 8; col++) {
-            std::cout << board[row][col] << ((col == 7) ? "" : "_");
-        }
-        std::cout << std::endl;
-    }
-}
+// void Board::print_board() {
+//     for (int row = 0; row < 8; row++) {
+//         std::cout << row << " ";
+//         for (int col = 0; col < 8; col++) {
+//             std::cout << board[row][col] << ((col == 7) ? "" : "_");
+//         }
+//         std::cout << std::endl;
+//     }
+// }
 
 // Return Figure at the position or ptrnull
 Figure* Board::cell_value(int x, int y){
@@ -85,27 +74,27 @@ void Board::make_move(pos current, pos new_position) {
         if (board[current.x][current.y] != nullptr){
 //            if (board[new_position.x][new_position.y] == nullptr && board[current.x][current.y]->can_move) {
             if (board[new_position.x][new_position.y] == nullptr) {
-                std::cout << "white move";
+                // std::cout << "white move";
                 // check if current figure can make moves
                 board[new_position.x][new_position.y] = board[current.x][current.y];
                 board[current.x][current.y] = nullptr;
             }
         is_white = false;
         }else{
-            std::cout << "invalid move";
+            // std::cout << "invalid move";
         }
     } else {
         if (board[current.x][current.y] != nullptr){
 //            if (board[new_position.x][new_position.y] == nullptr && board[current.x][current.y]->can_move) {
             if (board[new_position.x][new_position.y] == nullptr) {
-                std::cout << "black move";
+                // std::cout << "black move";
                 // check if current figure can make moves
                 board[new_position.x][new_position.y] = board[current.x][current.y];
                 board[current.x][current.y] = nullptr;
             }
             is_white = true;
         }else{
-            std::cout << "invalid move";
+            // std::cout << "invalid move";
         }
     }
 }

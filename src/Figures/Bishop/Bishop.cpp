@@ -1,5 +1,5 @@
 #include "Bishop.h"
-#include "../auxiliary_functions/diagonals.h"
+#include "diagonals.h"
 
 //! Use constructor of Figure
 Bishop::Bishop(int x, int y, bool is_white) : Figure(x, y, is_white) {}

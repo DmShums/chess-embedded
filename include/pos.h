@@ -1,7 +1,3 @@
-//
-// Created by Administrator on 09.06.2023.
-//
-
 #ifndef CHESS_SAMPLE_POS_H
 #define CHESS_SAMPLE_POS_H
 

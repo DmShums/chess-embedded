@@ -10,12 +10,13 @@
             "includePath": [
                 "/Users/shumskyjury/Desktop/chess-embedded/include",
                 "/Users/shumskyjury/Desktop/chess-embedded/src",
+                "/Users/shumskyjury/Desktop/chess-embedded/.pio/libdeps/megaatmega2560/FastLED/src",
+                "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/variants/mega",
                 "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
@@ -24,12 +25,13 @@
                 "path": [
                     "/Users/shumskyjury/Desktop/chess-embedded/include",
                     "/Users/shumskyjury/Desktop/chess-embedded/src",
+                    "/Users/shumskyjury/Desktop/chess-embedded/.pio/libdeps/megaatmega2560/FastLED/src",
+                    "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/variants/mega",
                     "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "/Users/shumskyjury/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]

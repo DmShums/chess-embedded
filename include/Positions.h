@@ -2,9 +2,9 @@
 #define CHESS_SAMPLE_POSITIONS_H
 
 
-#include "../../structures/pos.h"
+#include "pos.h"
 //! So that malloc works
-#include <cstdlib>
+#include <stdlib.h>
 
 // N: Save N number of pos
 class Positions{

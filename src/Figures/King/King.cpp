@@ -1,9 +1,9 @@
 #include "King.h"
-#include "../../structures/pos.h"
-#include "../auxiliary_functions/diagonals.h"
-#include "../auxiliary_functions/straight_lines.h"
-#include "../auxiliary_functions/knight_moves.h"
-#include "../auxiliary_functions/king_possible_move.h"
+#include "pos.h"
+#include "diagonals.h"
+#include "straight_lines.h"
+#include "knight_moves.h"
+#include "king_possible_move.h"
 
 //! Use constructor of Figure
 King::King(int x, int y, bool is_white) : Figure(x, y, is_white) {}

@@ -1,6 +1,6 @@
 #include "Queen.h"
-#include "../auxiliary_functions/diagonals.h"
-#include "../auxiliary_functions/straight_lines.h"
+#include "diagonals.h"
+#include "straight_lines.h"
 
 //! Use constructor of Figure
 Queen::Queen(int x, int y, bool is_white) : Figure(x, y, is_white) {}

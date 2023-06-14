@@ -1,5 +1,5 @@
 #include "Knight.h"
-#include "../auxiliary_functions/knight_moves.h"
+#include "knight_moves.h"
 
 //! Use constructor of Figure
 Knight::Knight(int x, int y, bool is_white) : Figure(x, y, is_white) {}

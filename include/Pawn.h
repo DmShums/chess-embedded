@@ -1,12 +1,8 @@
-//
-// Created by Shuma on 25.04.2023.
-//
-
 #ifndef TEST_INO_PAWN_H
 #define TEST_INO_PAWN_H
 
 // N: So malloc works
-#include <cstdlib>
+#include <stdlib.h>
 
 // bullshit?
 #include "Figure.h"

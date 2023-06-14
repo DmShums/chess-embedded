@@ -27,7 +27,9 @@ add_executable(chess_sample main.cpp
         src/Figures/auxiliary_functions/straight_lines.cpp
         src/Figures/auxiliary_functions/straight_lines.h
         src/Figures/auxiliary_functions/knight_moves.cpp
-        src/Figures/auxiliary_functions/knight_moves.h src/Figures/auxiliary_functions/king_possible_move.cpp src/Figures/auxiliary_functions/king_possible_move.h)
+        src/Figures/auxiliary_functions/knight_moves.h 
+        src/Figures/auxiliary_functions/king_possible_move.cpp 
+        src/Figures/auxiliary_functions/king_possible_move.h)
 
 target_include_directories(
         chess_sample

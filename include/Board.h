@@ -2,9 +2,9 @@
 #define TEST_INO_BOARD_H
 
 
-#include "../structures/pos.h"
+#include "pos.h"
 #include "Figure.h"
-#include "cstdlib"
+#include <stdlib.h>
 
 class Figure;
 class Board{
