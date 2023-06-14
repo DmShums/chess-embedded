@@ -1,46 +1,58 @@
-#include <iostream>
+//#include <vector>   // for std::array
+#include "Board.h"
 
-#include "src/Board/Board.h"
-#include "src/Figures/Positions.h"
+#include "Arduino.h"
+// #include "T/t.h"
+#include "Highlight.h"
+#include "Positions.h"
 
-int main() {
-    Board b = Board();
-//    b.print_board();
+// CRGB leds[NUM_LEDS];
 
-     //! Test possible moves
-    Figure* lnk = b.cell_value(4, 4);
 
-    std::cout << "cell value " << lnk << std::endl;
-    std::cout << "is fig white: " << lnk->is_white() << std::endl;
+int bor[8][8];
+Board board_chess = Board();
+Highlight highlight;
 
-    Positions bishop_pm = Positions(64); // it will be in setup
-    lnk->possible_moves(bishop_pm, b);
+void setup() {
+    Serial.begin(9600);
+    FastLED.addLeds<WS2812, LED_PIN, RGB>(leds, NUM_LEDS);
+    FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
+    FastLED.setBrightness(4);
+    FastLED.clear();
+    FastLED.show();
 
-    std::cout << "Len of possible moves is " << bishop_pm.get_size() << std::endl;
-    int bor[8][8];
-    for (int row=0; row < 8; row++){
-        for (int col=0; col < 8; col++){
-            bor[row][col] = 0;
+    // How to do this in a better way?
+    // Deallocate memory
+    // for (int i = 0; i < 8; i++) {
+    //     delete[] bor[i];
+    // }
+    // delete[] bor;
+
+}
+
+
+void loop() {
+    // highlight.turn_on(4, 4, board_chess, bor);
+    // highlight.turn_all_red(bor);
+    // highlight.turn_off(bor);
+
+    for (int i = 0; i < NUM_LEDS; i++) { // Turn off lights
+            leds[i] = CRGB(0, 0, 0);
         }
-    }
+        FastLED.show();
+        delay(50);
 
-    for (int i = 0; i < bishop_pm.get_size(); i++){
-        bor[bishop_pm.get_pos(i).x][bishop_pm.get_pos(i).y] = 1;
-//        std::cout << "i = " << i << " x " << bishop_pm.get_pos(i).x << " y " << bishop_pm.get_pos(i).y << std::endl;
-    }
-
-    std::cout << "Test board" << std::endl;
-    for (int row = 0; row < 8; row++){
-        for (int col = 0; col < 8; col++){
-            if (bor[row][col] == 1){
-                std::cout << "_";
-            } else {
-                std::cout << col;
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
+                if (bor[row][col] == 1) {
+                    leds[row + col] = CRGB(0, 0, 255);
+                }
+                Serial.print(bor[row][col]);
+                Serial.print(" ");
             }
-            std::cout<<" ";
+            Serial.println();
         }
-        std::cout << " " << row << " " << std::endl;
-    }
 
-    return 0;
+        FastLED.show();
+        delay(50);
 }
