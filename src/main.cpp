@@ -1,55 +1,60 @@
-#include "Board.h"
-#include "Arduino.h"
-#include "Highlight.h"
-#include "Positions.h"
+#include <iostream>
 
-// CRGB leds[NUM_LEDS];
+struct pos{
+    int x;
+    int y;
+};
+
+class positions{
+public:
+    int size;
+    pos* positionsss;
+
+    ~positions(){
+        free(positionsss);
+    }
+};
 
 
-int bor[8][8];
-Board board_chess = Board();
-Highlight highlight;
-
-void setup() {
-    Serial.begin(9600);
-    FastLED.addLeds<WS2812, LED_PIN, RGB>(leds, NUM_LEDS);
-    FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
-    FastLED.setBrightness(4);
-    FastLED.clear();
-    FastLED.show();
-
-    // How to do this in a better way?
-    // Deallocate memory
-    // for (int i = 0; i < 8; i++) {
-    //     delete[] bor[i];
-    // }
-    // delete[] bor;
-
+int get_moves_size(){
+    return 5;
 }
 
+void get_possible_moves(positions& poses){
+    int our_size =5;
+    poses.positions = static_cast<pos*> (malloc(sizeof(pos) * our_size));
+    poses.size = our_size;
+}
 
-void loop() {
-    highlight.turn_on(4, 4, board_chess, bor);
-    highlight.turn_all_red(bor);
-    // highlight.turn_off(bor);
+int main(){
+    std::cout<<sizeof(pos)<<std::endl;
 
-    for (int i = 0; i < NUM_LEDS; i++) { // Turn off lights
-            leds[i] = CRGB(0, 0, 0);
-        }
-        FastLED.show();
-        delay(50);
+    // int* p -- define pointer; variable p IS POINTER
+    // &a -- take addres of a
+    // int* p = &a
+    // int b = *p -- розіменувати п - take whats in address p
 
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                if (bor[row][col] == 1) {
-                    leds[row + col] = CRGB(0, 0, 255);
-                }
-                Serial.print(bor[row][col]);
-                Serial.print(" ");
-            }
-            Serial.println();
-        }
+    int a = 5;
+    int* p = &a;
+    std::cout<<"A: "<<a<<std::endl;
+    std::cout<<"P: "<<p<<std::endl;
+    std::cout<<"A: "<<*p<<std::endl;
 
-        FastLED.show();
-        delay(50);
+
+    positions poses{};
+    get_possible_moves(poses);
+
+    auto positionssss = static_cast<pos*> (malloc(sizeof(pos) * 5));
+
+//    ...
+//    ...
+
+
+    free(positionssss);
+
+//    int size = 0;
+//    auto arr = get_possible_moves(&size);
+//    std::cout<<arr[0].x<<" "<<arr[0].y<<std::endl;
+
+    std::cout<<"I want to die!"<<std::endl;
 }

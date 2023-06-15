@@ -1,4 +1,3 @@
-// #include <iostream>
 #include "Board.h"
 #include "Bishop.h"
 #include "Knight.h"
@@ -71,31 +70,32 @@ Figure* Board::cell_value(int x, int y){
 
 void Board::make_move(pos current, pos new_position) {
     if (is_white) {
+        // check if figure exists on the current cell
         if (board[current.x][current.y] != nullptr){
-//            if (board[new_position.x][new_position.y] == nullptr && board[current.x][current.y]->can_move) {
+            // check if figure exists on the current cell
             if (board[new_position.x][new_position.y] == nullptr) {
-                // std::cout << "white move";
-                // check if current figure can make moves
-                board[new_position.x][new_position.y] = board[current.x][current.y];
-                board[current.x][current.y] = nullptr;
+                set_figure(current, new_position);
+                delete_figure(current);
             }
         is_white = false;
-        }else{
-            // std::cout << "invalid move";
         }
     } else {
+        // check if figure exists on the current cell
         if (board[current.x][current.y] != nullptr){
-//            if (board[new_position.x][new_position.y] == nullptr && board[current.x][current.y]->can_move) {
+            // check if figure exists on the current cell
             if (board[new_position.x][new_position.y] == nullptr) {
-                // std::cout << "black move";
-                // check if current figure can make moves
-                board[new_position.x][new_position.y] = board[current.x][current.y];
-                board[current.x][current.y] = nullptr;
+                set_figure(current, new_position);
+                delete_figure(current);
             }
             is_white = true;
-        }else{
-            // std::cout << "invalid move";
         }
     }
 }
 
+void Board::set_figure(pos current, pos new_position) {
+    board[new_position.x][new_position.y] = board[current.x][current.y];
+}
+
+void Board::delete_figure(pos position) {
+    board[position.x][position.y] = nullptr;
+}

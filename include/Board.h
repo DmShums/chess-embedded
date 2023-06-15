@@ -29,6 +29,8 @@ public:
     }
 
     void make_move(pos current, pos new_position);
+    void set_figure(pos current, pos new_position);
+    void delete_figure(pos position);
 
     // Return Figure at the position or ptrnull
     Figure* cell_value(int x, int y);
