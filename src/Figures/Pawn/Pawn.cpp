@@ -19,54 +19,23 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
     possible_moves.reset_size();
     auto pos = get_position();
 
-    //! The cell contains a figure (right-top)
-    if (board.cell_value(pos.x + 1, pos.y + 1) != nullptr){
-        // the figure has a different color
-        if (board.cell_value(pos.x + 1, pos.y + 1)->is_white() != is_white()) {
-            // add a possible move
-            possible_moves.add_pos(pos.x + 1, pos.y + 1);
-        }
+    // check where to move
+    int forward_direction = is_white() ? 1 : -1;
+
+    // Move forward if the cell is empty
+    if (board.cell_value(pos.x + forward_direction, pos.y) == nullptr) {
+        possible_moves.add_pos(pos.x + forward_direction, pos.y);
     }
 
-    //! The cell contains a figure (left-top)
-    if (board.cell_value(pos.x + 1, pos.y - 1) != nullptr){
-        // the figure has a different color
-        if (board.cell_value(pos.x + 1, pos.y - 1)->is_white() != is_white()) {
-            // add a possible move
-            possible_moves.add_pos(pos.x + 1, pos.y - 1);
-        }
+    // Capture diagonally if there is an opponent's piece
+    if (board.cell_value(pos.x + forward_direction, pos.y + 1) != nullptr &&
+        board.cell_value(pos.x + forward_direction, pos.y + 1)->is_white() != is_white()) {
+        possible_moves.add_pos(pos.x + forward_direction, pos.y + 1);
     }
 
-    //! The cell contains a figure (right-bottom)
-    if (board.cell_value(pos.x - 1, pos.y + 1) != nullptr){
-        //! The figure has a different color
-        if (board.cell_value(pos.x - 1, pos.y + 1)->is_white() == is_white()) {
-            //! Add a possible move
-            possible_moves.add_pos(pos.x - 1, pos.y + 1);
-        }
-    }
-
-    //! The cell contains a figure (right-bottom)
-    if (board.cell_value(pos.x - 1, pos.y - 1) != nullptr){
-        //! The figure has a different color
-        if (board.cell_value(pos.x - 1, pos.y - 1)->is_white() == is_white()) {
-            //! Add a possible move
-            possible_moves.add_pos(pos.x - 1, pos.y - 1);
-        }
-    }
-
-    //! The cell doesn't contain a figure (top)
-    if (board.cell_value(pos.x, pos.y)->is_white() == is_white()) {
-        if (board.cell_value(pos.x + 1, pos.y) == nullptr) {
-            possible_moves.add_pos(pos.x + 1, pos.y);
-        }
-    }
-
-    //! The cell doesn't contain a figure (bottom)
-    if (board.cell_value(pos.x, pos.y)->is_white() != is_white()) {
-        if (board.cell_value(pos.x - 1, pos.y) == nullptr) {
-            possible_moves.add_pos(pos.x - 1, pos.y);
-        }
+    if (board.cell_value(pos.x + forward_direction, pos.y - 1) != nullptr &&
+        board.cell_value(pos.x + forward_direction, pos.y - 1)->is_white() != is_white()) {
+        possible_moves.add_pos(pos.x + forward_direction, pos.y - 1);
     }
 
 }
