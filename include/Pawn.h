@@ -11,6 +11,9 @@ class Pawn: public Figure {
 public:
     // use constructor for Figure
     Pawn(int x, int y, bool is_white);
+    // by default it is true
+    bool is_at_starting_position = true;
+    bool two_step_move = false;
 
     // change the argument possible_moves that is passed
     void possible_moves(Positions& possible_moves, Board& board) override;
