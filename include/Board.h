@@ -12,10 +12,7 @@ private:
     Figure* board[8][8];
 
 public:
-    // Print the chessboard to the console
-    void print_board();
     bool is_white = true;
-//    map<string, integer> section;
 
     Board();
     ~Board() {
@@ -28,9 +25,13 @@ public:
         }
     }
 
+    // Print the chessboard to the console
+    void print_board();
     void make_move(pos current, pos new_position);
     void set_figure(pos current, pos new_position);
     void delete_figure(pos position);
+    void init_board();
+    void add_fig(pos position, Figure* fig);
 
     // Return Figure at the position or ptrnull
     Figure* cell_value(int x, int y);

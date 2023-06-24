@@ -7,7 +7,17 @@
 #include "Pawn.h"
 
 
+#include "iostream"
+
 Board::Board() {
+    init_board();
+}
+
+void Board::add_fig(pos position, Figure* fig){
+    board[position.x][position.y] = fig;
+}
+
+void Board::init_board(){
     // Fill the chessboard with some initial values
 
     // Initialize the white figures
@@ -46,22 +56,20 @@ Board::Board() {
             board[row][col] = nullptr;
         }
     }
-
-    board[4][4] = new Pawn(4, 4, true);
-
 }
 
 
 // Temporary function to print board. I have a bit changed it, so it prints a number of each row
-// void Board::print_board() {
-//     for (int row = 0; row < 8; row++) {
-//         std::cout << row << " ";
-//         for (int col = 0; col < 8; col++) {
-//             std::cout << board[row][col] << ((col == 7) ? "" : "_");
-//         }
-//         std::cout << std::endl;
-//     }
-// }
+ void Board::print_board() {
+     for (int row = 0; row < 8; row++) {
+         std::cout << row << " ";
+         for (int col = 0; col < 8; col++) {
+
+             std::cout << ((board[row][col] == nullptr) ? 0: board[row][col]->figure_id()) << ((col == 7) ? "" : "_");
+         }
+         std::cout << std::endl;
+     }
+ }
 
 // Return Figure at the position or ptrnull
 Figure* Board::cell_value(int x, int y){
