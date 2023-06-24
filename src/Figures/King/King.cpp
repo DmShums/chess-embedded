@@ -40,115 +40,132 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
     if (king_pos.x + 1 < 8) {
         //! We will check the cell
         cur_pos = pos{king_pos.x + 1, king_pos.y};
-        //! Say that enemy_positions is empty
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
 
-        //! Add to enemy_positions coordinates of cells to check for an enemy
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            //! Say that enemy_positions is empty
+            enemy_positions.reset_size();
 
-        //! Add the move if it is possible
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            //! Add to enemy_positions coordinates of cells to check for an enemy
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+
+            //! Add the move if it is possible
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! top (x - 1, y)
     if (king_pos.x - 1 >= 0) {
         cur_pos = pos{king_pos.x - 1, king_pos.y};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! right (x, y + 1)
     if (king_pos.y + 1 < 8) {
         cur_pos = pos{king_pos.x, king_pos.y + 1};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! left (x, y - 1)
     if (king_pos.y - 1 >= 0) {
         cur_pos = pos{king_pos.x, king_pos.y - 1};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! down right (x + 1, y + 1)
     if ((king_pos.x + 1 < 8) && (king_pos.y + 1 < 8)) {
         cur_pos = pos{king_pos.x + 1, king_pos.y + 1};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! down left (x + 1, y - 1)
     if ((king_pos.x + 1 < 8) && (king_pos.y - 1 >= 0)) {
         cur_pos = pos{king_pos.x + 1, king_pos.y - 1};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! top right (x - 1, y + 1)
     if ((king_pos.x - 1 >= 0) && (king_pos.y + 1 < 8)) {
         cur_pos = pos{king_pos.x - 1, king_pos.y + 1};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 
     //! top left (x - 1, y - 1)
     if ((king_pos.x - 1 >= 0) && (king_pos.y - 1 >= 0)) {
         cur_pos = pos{king_pos.x - 1, king_pos.y - 1};
-        enemy_positions.reset_size();
+        if((board.cell_value(cur_pos.x, cur_pos.y) != nullptr and board.cell_value(cur_pos.x, cur_pos.y)->is_white() != is_white()) or board.cell_value(cur_pos.x, cur_pos.y) == nullptr) {
+            enemy_positions.reset_size();
 
-        check_diagonals(cur_pos, is_white(), enemy_positions, board);
-        check_straight_lines(cur_pos, is_white(), enemy_positions, board);
-        check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
+            check_diagonals(cur_pos, is_white(), enemy_positions, board);
+            check_straight_lines(cur_pos, is_white(), enemy_positions, board);
+            check_knight_moves(cur_pos, is_white(), enemy_positions, board); // It does not work and I do not know why
 
-        if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
-            possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            if (is_possible_move(cur_pos, is_white(), enemy_positions, board)) {
+                possible_moves.add_pos(cur_pos.x, cur_pos.y);
+            }
         }
     }
 

@@ -21,7 +21,7 @@ void Board::init_board(){
     // Fill the chessboard with some initial values
 
     // Initialize the white figures
-    board[0][0] = new Rook(1, 0, true);
+    board[0][0] = new Rook(0, 0, true);
     board[0][1] = new Knight(0, 1, true);
     board[0][2] = new Bishop(0, 2, true);
     board[0][3] = new King(0, 4, true);
@@ -39,8 +39,8 @@ void Board::init_board(){
     board[7][0] = new Rook(7, 0, false);
     board[7][1] = new Knight(7, 1, false);
     board[7][2] = new Bishop(7, 2, false);
-    board[7][3] = new King(7, 4, false);
-    board[7][4] = new Queen(7, 3, false);
+    board[7][3] = new King(7, 3, false);
+    board[7][4] = new Queen(7, 4, false);
     board[7][5] = new Bishop(7, 5, false);
     board[7][6] = new Knight(7, 6, false);
     board[7][7] = new Rook(7, 7, false);

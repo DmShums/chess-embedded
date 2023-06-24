@@ -5,6 +5,7 @@
 
 #include "Pawn.h"
 #include "Bishop.h"
+#include "King.h"
 #include "iostream"
 
 
@@ -25,7 +26,7 @@ void print_poss_moves(Positions& poses){
         std::cout << row << " ";
         for (int col = 0; col < 8; col++) {
 
-            std::cout << a[col][row] << ((col == 7) ? "" : "_");
+            std::cout << a[row][col] << ((col == 7) ? "" : "_");
         }
         std::cout << std::endl;
     }
@@ -40,7 +41,7 @@ int main(){
     board.print_board();
     std::cout<<std::endl;
 
-    board.cell_value(4, 4)->possible_moves(poses, board);
+    board.cell_value(7, 3)->possible_moves(poses, board);
     print_poss_moves(poses);
 //    Highlight highlight;
 
