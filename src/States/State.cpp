@@ -39,6 +39,10 @@ bool State::process() {
                 // the move passes to other side
                 return !is_white;
             }
+            else if(board.cell_value(p.x, p.y) == nullptr) {
+                // THE FIGURE GOT PUT HERE!!!!
+                // NEED TO MOVE HERE IN BOARD AND FIGURES
+            }
             else{
                 // IDK SOMETHING BAD HAPPENED, maybe enemy fig picked up, need logic for this
             }
