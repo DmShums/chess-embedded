@@ -19,6 +19,9 @@ int Pawn::figure_id() {
 void Pawn::possible_moves(Positions &possible_moves, Board &board) {
     possible_moves.reset_size();
     auto pos = get_position();
+    auto a = pos.x;
+    pos.x = pos.y;
+    pos.y = a;
 
     int forward_direction = is_white() ? 1 : -1;
 

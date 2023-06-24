@@ -4,17 +4,44 @@
 #include "Positions.h"
 
 #include "Pawn.h"
+#include "Bishop.h"
+#include "iostream"
 
 
 // CRGB leds[NUM_LEDS];
 
+void print_poss_moves(Positions& poses){
+    int a[8][8];
+    for(auto & i : a){
+        for(int & j : i){
+            j = 0;
+        }
+    }
+    for(int i=0; i<poses.get_size(); ++i){
+        auto p = poses.get_pos(i);
+        a[p.x][p.y] = 1;
+    }
+    for (int row = 0; row < 8; row++) {
+        std::cout << row << " ";
+        for (int col = 0; col < 8; col++) {
+
+            std::cout << a[col][row] << ((col == 7) ? "" : "_");
+        }
+        std::cout << std::endl;
+    }
+}
+
 
 int main(){
 
-    int bor[8][8];
+    Positions poses = Positions(64);
     Board board = Board();
     board.add_fig(pos{4, 4}, new Pawn(4, 4, true));
     board.print_board();
+    std::cout<<std::endl;
+
+    board.cell_value(4, 4)->possible_moves(poses, board);
+    print_poss_moves(poses);
 //    Highlight highlight;
 
 

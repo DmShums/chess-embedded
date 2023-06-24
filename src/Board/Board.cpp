@@ -64,7 +64,6 @@ void Board::init_board(){
      for (int row = 0; row < 8; row++) {
          std::cout << row << " ";
          for (int col = 0; col < 8; col++) {
-
              std::cout << ((board[row][col] == nullptr) ? 0: board[row][col]->figure_id()) << ((col == 7) ? "" : "_");
          }
          std::cout << std::endl;
