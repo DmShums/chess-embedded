@@ -70,7 +70,7 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
 
     //! right (x, y + 1)
     if (king_pos.y + 1 < 8) {
-        cur_pos = pos{king_pos.x + 1, king_pos.y};
+        cur_pos = pos{king_pos.x, king_pos.y + 1};
         enemy_positions.reset_size();
 
         check_diagonals(cur_pos, is_white(), enemy_positions, board);
@@ -151,5 +151,25 @@ void King::possible_moves(Positions& possible_moves, Board& board) {
             possible_moves.add_pos(cur_pos.x, cur_pos.y);
         }
     }
+
+    // add castling right(short)
+    if (king_pos.y + 3 == 7) {
+        if (board.cell_value(king_pos.x, king_pos.y + 3) != nullptr &&
+            board.cell_value(king_pos.x, king_pos.y + 3)->figure_id() == 5 &&
+            board.cell_value(king_pos.x, king_pos.y + 3)->is_white() == is_white() &&
+            board.cell_value(king_pos.x, king_pos.y + 1) == nullptr &&
+            board.cell_value(king_pos.x, king_pos.y + 2) == nullptr) {
+            possible_moves.add_pos(king_pos.x, king_pos.y + 2);
+    }}
+
+    // add castling left(long)
+    if (king_pos.y - 4 == 0) {
+        if (board.cell_value(king_pos.x, king_pos.y - 4) != nullptr &&
+            board.cell_value(king_pos.x, king_pos.y - 4)->figure_id() == 5 &&
+            board.cell_value(king_pos.x, king_pos.y - 4)->is_white() == is_white() &&
+            board.cell_value(king_pos.x, king_pos.y - 1) == nullptr &&
+            board.cell_value(king_pos.x, king_pos.y - 2) == nullptr) {
+            possible_moves.add_pos(king_pos.x, king_pos.y - 3);
+    }}
 
 }
