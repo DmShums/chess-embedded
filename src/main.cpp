@@ -1,70 +1,64 @@
 #include "Board.h"
-//#include "Arduino.h"
+#include "Arduino.h"
+#include "Pins.hpp"
 //#include "Highlight.h"
 #include "Positions.h"
-
 #include "Pawn.h"
 #include "Bishop.h"
 #include "King.h"
-#include "iostream"
+#include "Arduino.h"
+#include "State.h"
 
 
-// CRGB leds[NUM_LEDS];
+CRGB leds[NUM_LEDS];
 
-void print_poss_moves(Positions& poses){
-    int a[8][8];
-    for(auto & i : a){
-        for(int & j : i){
-            j = 0;
+Positions poses = Positions(64);
+Board board = Board();
+State white_state = State(board, poses, true);
+State black_state = State(board, poses, false);
+
+State* current_state = &white_state;
+bool curr_state = true;
+bool next_state = true;
+
+
+void setup() {
+    Serial.begin(9600);
+    FastLED.addLeds<WS2812, LED_PIN, RGB>(leds, NUM_LEDS);
+    FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
+    FastLED.setBrightness(100);
+    FastLED.clear();
+    FastLED.show();
+
+    // config pins
+    pinMode(S0, OUTPUT);
+    pinMode(S1, OUTPUT);
+    pinMode(S2, OUTPUT);
+
+    for(int i=I0; i<I0+7; ++i){
+        pinMode(i, INPUT);
+    }
+
+    current_state->enter();
+}
+
+void loop(){
+    curr_state = next_state;
+    auto next_state = current_state->process();
+    if(curr_state != next_state){
+        if(next_state == false){
+            current_state = &black_state;
+            current_state->enter();
+        }
+        else{
+            current_state = &white_state;
+            current_state->enter();
         }
     }
-    for(int i=0; i<poses.get_size(); ++i){
-        auto p = poses.get_pos(i);
-        a[p.x][p.y] = 1;
-    }
-    for (int row = 0; row < 8; row++) {
-        std::cout << row << " ";
-        for (int col = 0; col < 8; col++) {
 
-            std::cout << a[row][col] << ((col == 7) ? "" : "_");
-        }
-        std::cout << std::endl;
-    }
 }
 
 
-int main(){
-
-    Positions poses = Positions(64);
-    Board board = Board();
-    board.add_fig(pos{4, 4}, new Pawn(4, 4, true));
-    board.print_board();
-    std::cout<<std::endl;
-
-    board.cell_value(7, 3)->possible_moves(poses, board);
-    print_poss_moves(poses);
-//    Highlight highlight;
-
-
-    return 0;
-}
-
-//void setup() {
-//    Serial.begin(9600);
-//    FastLED.addLeds<WS2812, LED_PIN, RGB>(leds, NUM_LEDS);
-//    FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
-//    FastLED.setBrightness(4);
-//    FastLED.clear();
-//    FastLED.show();
-//
-//    // How to do this in a better way?
-//    // Deallocate memory
-//    // for (int i = 0; i < 8; i++) {
-//    //     delete[] bor[i];
-//    // }
-//    // delete[] bor;
-//
-//}
 
 //void loop() {
 //    highlight.turn_on(4, 4, board_chess, bor);

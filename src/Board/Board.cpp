@@ -7,8 +7,6 @@
 #include "Pawn.h"
 
 
-#include "iostream"
-
 Board::Board() {
     init_board();
 }
@@ -60,15 +58,15 @@ void Board::init_board(){
 
 
 // Temporary function to print board. I have a bit changed it, so it prints a number of each row
- void Board::print_board() {
-     for (int row = 0; row < 8; row++) {
-         std::cout << row << " ";
-         for (int col = 0; col < 8; col++) {
-             std::cout << ((board[row][col] == nullptr) ? 0: board[row][col]->figure_id()) << ((col == 7) ? "" : "_");
-         }
-         std::cout << std::endl;
-     }
- }
+// void Board::print_board() {
+//     for (int row = 0; row < 8; row++) {
+//         std::cout << row << " ";
+//         for (int col = 0; col < 8; col++) {
+//             std::cout << ((board[row][col] == nullptr) ? 0: board[row][col]->figure_id()) << ((col == 7) ? "" : "_");
+//         }
+//         std::cout << std::endl;
+//     }
+// }
 
 // Return Figure at the position or ptrnull
 Figure* Board::cell_value(int x, int y){

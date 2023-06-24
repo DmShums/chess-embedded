@@ -26,7 +26,7 @@ public:
     }
 
     // Print the chessboard to the console
-    void print_board();
+//    void print_board();
     void make_move(pos current, pos new_position);
     void set_figure(pos current, pos new_position);
     void delete_figure(pos position);
