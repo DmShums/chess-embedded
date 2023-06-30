@@ -2,36 +2,40 @@
 
 CRGB leds[NUM_LEDS];
 
+CRGB cell_1 = CRGB(0, 200, 200);
+CRGB cell_2 = CRGB(200, 0, 0);
+CRGB pm_colour = CRGB(0, 0, 255);
+CRGB mistake_color = CRGB(0, 255, 0);
 
-void Highlight::turn_on(int x, int y, Board &board, int (*bor)[8]) {
-    Figure* lnk = board.cell_value(x, y);
-    Positions pm = Positions(64);
-    lnk->possible_moves(pm, board);
+void get_color(int i) {
+    leds[i] = ((i / 8 + i % 8) % 2)? cell_1 : cell_2;
+}
 
-    for (int row=0; row < 8; row++){
-        for (int col=0; col < 8; col++){
-            bor[row][col] = 0;
-        }
+void highlight::reset() {
+    for (int i = 0; i < NUM_LEDS; ++i) {
+        get_color(i);
+    }
+//    FastLED.show();
+}
+
+void highlight::hint_on(Positions& p_moves) {
+    for (int i = 0; i < p_moves.get_size(); ++i) {
+        leds[p_moves.get_pos(i).x + p_moves.get_pos(i).y * 8] = pm_colour;
     }
 
-    for (int i = 0; i < pm.get_size(); i++){
-        bor[pm.get_pos(i).x][pm.get_pos(i).y] = 1;
-    }
+//    FastLED.show();
 
 }
 
-void Highlight::turn_off(int (*bor)[8]) {
-    for (int row=0; row < 8; row++){
-        for (int col=0; col < 8; col++){
-            bor[row][col] = 0;
-        }
+void highlight::turn_all_red() {
+    for (int i = 0; i < NUM_LEDS; ++i) {
+        leds[i] = mistake_color;
     }
+
+//    FastLED.show();
+
 }
 
-void Highlight::turn_all_red(int (*bor)[8]) {
-    for (int row=0; row < 8; row++){
-        for (int col=0; col < 8; col++){
-            bor[row][col] = 1;
-        }
-    }
+void highlight::show(){
+    FastLED.show();
 }

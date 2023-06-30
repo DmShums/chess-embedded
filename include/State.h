@@ -31,7 +31,9 @@ public:
 
     void enter();
     void exit();
+    void figure_up(bool new_state);
     bool process();
+    bool get_bool_fig_up();
     pos question_sensors();
 };
 
