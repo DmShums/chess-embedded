@@ -25,7 +25,7 @@ bool State::process() {
         // Poses now has POSSIBLE MOVES
 
         //! HIGHLIGHT THEM
-        highlight::hint_on(poses);
+        highlight::hint_on(poses, board);
 
 
 

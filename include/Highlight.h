@@ -6,6 +6,7 @@
 #include <FastLED.h>
 #include "Figure.h"
 #include "Positions.h"
+#include "Board.h"
 
 #define LED_PIN 22
 #define MAG_PIN 28
@@ -15,7 +16,7 @@
 extern CRGB leds[NUM_LEDS];
 
 namespace highlight {
- void hint_on(Positions& p_moves);
+ void hint_on(Positions& p_moves, Board& board);
  void turn_all_red();
  void reset();
  void show();

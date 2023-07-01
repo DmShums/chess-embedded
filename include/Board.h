@@ -9,6 +9,7 @@
 #include "State.h"
 
 class Figure;
+class State;
 
 class Board {
 private:

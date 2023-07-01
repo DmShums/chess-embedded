@@ -8,6 +8,8 @@
 
 #include "State.h"
 
+#include "Arduino.h"
+#include "Highlight.h"
 
 Board::Board() {
     init_board();
@@ -127,6 +129,11 @@ void Board::lift_figure(pos position, State* state) {
     state->figure_up(true);
     lifted_fig = board[position.x][position.y];
     board[position.x][position.y] = nullptr;
+
+    Positions possible_moves = Positions(64);
+    lifted_fig->possible_moves(possible_moves, *this);
+    highlight::hint_on(possible_moves, *this);
+    highlight::show();
 }
 
 void Board::lower_figure(pos position, State* state) {
@@ -134,9 +141,12 @@ void Board::lower_figure(pos position, State* state) {
     board[position.x][position.y] = lifted_fig;
     lifted_fig->new_position(position.x, position.y);
     lifted_fig = nullptr;
+    highlight::reset();
+    highlight::show();
 }
 
 void Board::toggle_cell(pos position, State* state) {
+    highlight::reset();
     if (state->get_bool_fig_up()) {
         if (cell_value(position.x, position.y) == nullptr) {
             lower_figure(position, state);

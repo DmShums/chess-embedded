@@ -2,9 +2,9 @@
 #define TEST_INO_FIGURE_H
 
 
+#include "Positions.h"
 #include "pos.h"
 #include "Board.h"
-#include "Positions.h"
 
 //! Why the code does not work without next line?
 class Board;

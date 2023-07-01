@@ -28,6 +28,7 @@ void setup() {
     FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
     FastLED.setBrightness(100);
     FastLED.clear();
+    highlight::reset();
     FastLED.show();
 
     //! Config pins to send the number of a Hall sensor in a row
@@ -43,17 +44,6 @@ void setup() {
 }
 
 void loop() {
-//    highlight::turn_all_red();
-//    highlight::show();
-
-    Figure *fig = board.get_lifted();
-    if (fig != nullptr) {
-        Positions possible_moves = Positions(64);
-        fig->possible_moves(possible_moves, board);
-        highlight::hint_on(possible_moves);
-        highlight::show();
-    }
-
     pos fig_pos = current_state->question_sensors();
     if (fig_pos.x == 10) {
         return;
@@ -77,31 +67,3 @@ void loop() {
 //    }
 
 }
-
-
-
-//void loop() {
-//    highlight.turn_on(4, 4, board_chess, bor);
-//    highlight.turn_all_red(bor);
-//    // highlight.turn_off(bor);
-//
-//    for (int i = 0; i < NUM_LEDS; i++) { // Turn off lights
-//            leds[i] = CRGB(0, 0, 0);
-//        }
-//        FastLED.show();
-//        delay(50);
-//
-//        for (int row = 0; row < 8; row++) {
-//            for (int col = 0; col < 8; col++) {
-//                if (bor[row][col] == 1) {
-//                    leds[row + col] = CRGB(0, 0, 255);
-//                }
-//                Serial.print(bor[row][col]);
-//                Serial.print(" ");
-//            }
-//            Serial.println();
-//        }
-//
-//        FastLED.show();
-//        delay(50);
-//}

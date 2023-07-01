@@ -10,6 +10,8 @@
 #define DOWN 1
 #define UP 0
 
+class Board;
+
 class State{
 private:
     bool is_white;

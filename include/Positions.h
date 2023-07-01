@@ -15,7 +15,7 @@ private:
     //! Maximum number of pos
     int capacity;
 public:
-    Positions(int init_capacity){
+    explicit Positions(int init_capacity){
         capacity = init_capacity;
         size = 0;
         //! Array of pos`s with maximum size of capacity
@@ -35,7 +35,7 @@ public:
         return ppositions[idx];
     }
 
-    int get_size(){
+    int get_size() const{
         return size;
     }
 
