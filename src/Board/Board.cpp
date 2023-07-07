@@ -31,8 +31,8 @@ void Board::init_board() {
         }
     }
 
-    board[0][0] = new Knight(0, 0, true);
-    board[2][1] = new Knight(2, 1, false);
+    board[0][0] = new Rook(0, 0, true);
+    board[2][1] = new Queen(2, 1, false);
 
     // Initialize the white figures
 //    board[0][0] = new Rook(0, 0, true);
@@ -125,35 +125,26 @@ Figure *Board::get_lifted() {
     return lifted_fig;
 }
 
-void Board::lift_figure(pos position, State* state) {
-    state->figure_up(true);
+void Board::lift_figure(pos position) {
     lifted_fig = board[position.x][position.y];
     board[position.x][position.y] = nullptr;
-
-    Positions possible_moves = Positions(64);
-    lifted_fig->possible_moves(possible_moves, *this);
-    highlight::hint_on(possible_moves, *this);
-    highlight::show();
 }
 
-void Board::lower_figure(pos position, State* state) {
-    state->figure_up(false);
+void Board::lower_figure(pos position) {
     board[position.x][position.y] = lifted_fig;
     lifted_fig->new_position(position.x, position.y);
     lifted_fig = nullptr;
-    highlight::reset();
-    highlight::show();
 }
-
-void Board::toggle_cell(pos position, State* state) {
-    highlight::reset();
-    if (state->get_bool_fig_up()) {
-        if (cell_value(position.x, position.y) == nullptr) {
-            lower_figure(position, state);
-        } else {
-            delete_figure(position);
-        }
-    } else {
-        lift_figure(position, state);
-    }
-}
+//
+//void Board::toggle_cell(pos position, State* state) {
+//    highlight::reset();
+//    if (state->get_bool_fig_up()) {
+//        if (cell_value(position.x, position.y) == nullptr) {
+//            lower_figure(position, state);
+//        } else {
+//            delete_figure(position);
+//        }
+//    } else {
+//        lift_figure(position, state);
+//    }
+//}

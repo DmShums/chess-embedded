@@ -43,9 +43,9 @@ public:
 
     Figure* get_lifted();
 
-    void lift_figure(pos position, State* state);
+    void lift_figure(pos position);
 
-    void lower_figure(pos position, State* state);
+    void lower_figure(pos position);
 
     void toggle_cell(pos position, State* state);
 

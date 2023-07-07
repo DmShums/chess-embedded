@@ -17,10 +17,12 @@ private:
     bool is_white;
     bool is_fig_up;
     bool is_enemy_fig_up;
+    bool error;
     Board& board;
     Positions& poses;
 
     pos init_fig_pos;
+    pos init_enemy_fig_pos;
 public:
 
     State(Board& board, Positions& pos, bool white): board{board}, poses{pos}{

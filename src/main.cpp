@@ -9,6 +9,7 @@
 #include "Positions.h"
 
 #include "FastLED.h"
+#include "StatesManager.hpp"
 
 
 Positions poses = Positions(64);
@@ -17,8 +18,10 @@ State white_state = State(board, poses, true);
 State black_state = State(board, poses, false);
 
 State *current_state = &white_state; //! White goes first
-bool curr_state = true;
+bool st = true;
 bool next_state = true;
+
+StatesManager states_manager{&white_state, &black_state, &board, &poses};
 
 
 void setup() {
@@ -44,12 +47,15 @@ void setup() {
 }
 
 void loop() {
-    pos fig_pos = current_state->question_sensors();
-    if (fig_pos.x == 10) {
-        return;
-    }
+    states_manager.process();
 
-    board.toggle_cell(fig_pos, current_state);
+
+//    pos fig_pos = current_state->question_sensors();
+//    if (fig_pos.x == 10) {
+//        return;
+//    }
+//
+//    board.toggle_cell(fig_pos, current_state);
 
 //    curr_state = next_state; //! Default true (white goes first)
 //    current_state->enter();
