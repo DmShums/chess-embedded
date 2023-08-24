@@ -86,6 +86,32 @@ bool State::process() {
 
         return !is_white;
     }
+
+    // shuma's code
+    // Our figure is put down were own fig was
+    if (is_fig_up and active_fig != nullptr and active_fig->is_white() == is_white and p == init_fig_pos) {
+        if (board.cell_value(p.x, p.y) != nullptr && board.cell_value(p.x, p.y)->is_white() == is_white) {
+            // Attempt to capture own piece
+            highlight::reset();
+            // highlight::highlight_cell(p, Color::Purple); // Highlight the attempted destination cell in purple
+            highlight::show();
+
+            // Reset the state
+            board.lower_figure(p);
+            init_fig_pos = pos{10, 10};
+            is_fig_up = false;
+            return is_white;
+        } else {
+        // Valid move: Put the figure back down
+            highlight::reset();
+            highlight::show();
+
+            board.lower_figure(p);
+            init_fig_pos = pos{10, 10};
+            is_fig_up = false;
+            return is_white;
+        }
+    }
 }
 
 
