@@ -30,6 +30,8 @@ public:
 
     void process();
 
+    bool check(State* state, pos white_king, pos black_king);
+
 };
 
 #endif //UNTITLED2_STATESMANAGER_HPP

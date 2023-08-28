@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "__hash_table": "cpp",
+        "__locale": "cpp",
+        "__threading_support": "cpp",
+        "algorithm": "cpp",
+        "functional": "cpp",
+        "locale": "cpp",
+        "string": "cpp",
+        "type_traits": "cpp",
+        "typeinfo": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "forward_list": "cpp",
+        "format": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "variant": "cpp"
+    }
+}

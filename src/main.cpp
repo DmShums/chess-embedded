@@ -50,26 +50,26 @@ void loop() {
     states_manager.process();
 
 
-   pos fig_pos = current_state->question_sensors();
-   if (fig_pos.x == 10) {
-       return;
-   }
+//    pos fig_pos = current_state->question_sensors();
+//    if (fig_pos.x == 10) {
+//        return;
+//    }
 
-   board.toggle_cell(fig_pos, current_state);
+//    board.toggle_cell(fig_pos, current_state);
 
-   curr_state = next_state; //! Default true (white goes first)
-   current_state->enter();
-   next_state = current_state->process();
-   delay(50);
-   if (curr_state != next_state) {
-       if (!next_state) {
-           current_state = &black_state;
-           current_state->enter();
-       }
-       else {
-           current_state = &white_state;
-           current_state->enter();
-       }
-   }
+//    curr_state = next_state; //! Default true (white goes first)
+//    current_state->enter();
+//    next_state = current_state->process();
+//    delay(50);
+//    if (curr_state != next_state) {
+//        if (!next_state) {
+//            current_state = &black_state;
+//            current_state->enter();
+//        }
+//        else {
+//            current_state = &white_state;
+//            current_state->enter();
+//        }
+//    }
 
 }

@@ -49,8 +49,9 @@ public:
 
     void toggle_cell(pos position, State* state);
 
-
     void add_fig(pos position, Figure *fig);
+
+    pos find_kings_position(bool is_white);
 
     // Return Figure at the position or ptrnull
     Figure *cell_value(int x, int y);

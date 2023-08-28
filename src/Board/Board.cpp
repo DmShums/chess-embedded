@@ -148,3 +148,13 @@ void Board::lower_figure(pos position) {
 //        lift_figure(position, state);
 //    }
 //}
+
+pos Board::find_kings_position(bool white) {
+    for (int row = 0; row < 8; row++) {
+        for (int col = 0; col < 8; col++) {
+            if (board[row][col] != nullptr and board[row][col]->figure_id() == 1 and board[row][col]->is_white() == white){
+                return pos{row, col}
+            }
+        }
+    }
+}
