@@ -39,17 +39,29 @@ void setup() {
     for (int i = I0; i < I0 + 7; ++i) { //! Go through all rows (3-10 pins in a row)
         pinMode(i, INPUT);
     }
+//    Serial.print("---------------------");
 
     current_state->enter(); //! All figures are down
+
 }
 
 void loop() {
     pos fig_pos = current_state->question_sensors();
+    if (fig_pos.x != 10) {
+        Serial.print('x');
+        Serial.print(fig_pos.x);
+        Serial.print('y');
+        Serial.print(fig_pos.y);
+        Serial.print("-----");
+    }
+
     if (fig_pos.x == 10) {
         return;
     }
 
     board.toggle_cell(fig_pos, current_state);
+
+// ------------------
 
 //    curr_state = next_state; //! Default true (white goes first)
 //    current_state->enter();

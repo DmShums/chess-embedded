@@ -65,11 +65,10 @@ pos State::question_sensors() {
         digitalWrite(S1, (a & 0b010));
         digitalWrite(S2, (a & 0b100));
 
-        for (int i = I0; i < I0 + 7; ++i) {
+        for (int i = I0; i <= I0 + 7; ++i) {
             auto val = digitalRead(i);
             if((board.cell_value(a, i-I0) != nullptr and val == UP) or
                (board.cell_value(a, i-I0) == nullptr and val == DOWN)){
-
                 // delay for debouncing
                 delay(100);
                 return pos{a, i - I0};

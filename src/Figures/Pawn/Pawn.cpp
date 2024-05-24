@@ -35,7 +35,8 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
         // Move two steps forward from the starting position
         if (check_out_of_bounds(pos.x + 2 * forward_direction, pos.y) and
             is_at_starting_position && board.cell_value(pos.x + 2 * forward_direction, pos.y) == nullptr) {
-            possible_moves.add_pos(pos.x + 2 * forward_direction, pos.y);
+            possible_moves.add_pos(pos.x +2 * forward_direction, pos.y);
+            is_at_starting_position = false;
         }
     }
 
