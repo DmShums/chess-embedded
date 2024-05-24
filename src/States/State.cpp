@@ -6,54 +6,86 @@ void State::enter() {
     is_fig_up = false;
     is_enemy_fig_up = false;
     init_fig_pos = pos{10, 10};
+    init_enemy_fig_pos = pos{10, 10};
+    error = false;
 }
 
 // main function, processes the move, returns what state should be next (if the move is changed or not)
 bool State::process() {
     auto p = question_sensors();
-    if (p.x == 10) {
+
+    if (p.x == 10) return is_white;
+
+    auto active_fig = board.cell_value(p.x, p.y);
+
+    Serial.print(p.x, p.y);
+    Serial.print('\n');
+
+    // Handle errors first
+    if(error and p == init_enemy_fig_pos){
+        highlight::reset();
+        highlight::show();
+        is_enemy_fig_up = false;
+        init_enemy_fig_pos = pos{10, 10};
         return is_white;
     }
 
-    Serial.print(p.x);
-    if (!is_fig_up) {
+    // The turn started, right player lifted the figure!
+    if(!is_fig_up and active_fig != nullptr and active_fig->is_white() == is_white){
         is_fig_up = true;
-
-        auto fig = board.cell_value(p.x, p.y); //! Save the figure
-        fig->possible_moves(poses, board); //! Save possible moves
-
-        // Poses now has POSSIBLE MOVES
-
-        //! HIGHLIGHT THEM
+        init_fig_pos = p;
+        board.lift_figure(p);
+        active_fig->possible_moves(poses, board); //! Save possible moves
         highlight::hint_on(poses, board);
+        highlight::show();
 
-
-
-        // The move continues
         return is_white;
-
     }
-    else {
-        if (init_fig_pos.x != 10) {
-
-            if (p.x == init_fig_pos.x and p.y == init_fig_pos.y) {
-                // The fig is put back
-
-                // The move passes to other side
-                return !is_white;
-            }
-            else if(board.cell_value(p.x, p.y) == nullptr) {
-                // THE FIGURE GOT PUT HERE!!!!
-                // NEED TO MOVE HERE IN BOARD AND FIGURES
-            }
-            else {
-                // IDK SOMETHING BAD HAPPENED, maybe enemy fig picked up, need logic for this
-            }
-        }
+        // IF the wrong player lifted the figure!!!
+    else if(!is_fig_up and active_fig != nullptr and active_fig->is_white() != is_white){
+        init_enemy_fig_pos = p;
+        highlight::turn_all_red();
+        highlight::show();
+        error = true;
+        return is_white;
     }
 
+    // Our figure is put back down!!
+    if(is_fig_up and active_fig != nullptr and active_fig->is_white() == is_white and p == init_fig_pos){
+        highlight::reset();
+        highlight::show();
 
-    return false;
+        board.lower_figure(p);
+        init_fig_pos = pos{10, 10};
+        is_fig_up = false;
+        return is_white;
+    }
+
+    // The white figure is moved to the new position
+    if(is_fig_up and active_fig == nullptr){
+        highlight::reset();
+        highlight::show();
+
+        board.lower_figure(p);
+        return !is_white;
+    }
+
+    // Our figure is up and we lifted enemy figure
+    if(is_fig_up and !is_enemy_fig_up and active_fig != nullptr and active_fig->is_white() != is_white){
+        init_enemy_fig_pos = p;
+        is_enemy_fig_up = true;
+        board.delete_figure(p);
+        return is_white;
+    }
+
+    // Our figure is put down where enemy fig was
+    if(is_fig_up and is_enemy_fig_up and p == init_enemy_fig_pos){
+        board.lower_figure(p);
+        highlight::reset();
+        highlight::show();
+
+        return !is_white;
+    }
 }
 
 
@@ -65,10 +97,11 @@ pos State::question_sensors() {
         digitalWrite(S1, (a & 0b010));
         digitalWrite(S2, (a & 0b100));
 
-        for (int i = I0; i <= I0 + 7; ++i) {
+        for (int i = I0; i < I0 + 7; ++i) {
             auto val = digitalRead(i);
             if((board.cell_value(a, i-I0) != nullptr and val == UP) or
                (board.cell_value(a, i-I0) == nullptr and val == DOWN)){
+
                 // delay for debouncing
                 delay(100);
                 return pos{a, i - I0};
