@@ -1,20 +1,12 @@
 #include "Knight.h"
 #include "knight_moves.h"
+#include "utils.h"
 
 //! Use constructor of Figure
 Knight::Knight(int x, int y, bool is_white) : Figure(x, y, is_white) {}
 
-//! Return ID of a figure
-/*!
- * King - 1
- * Queen - 2
- * Bishop - 3
- * Knight - 4
- * Rook - 5
- * Pawn - 6
- */
 int Knight::figure_id() {
-    return 4;
+    return KNIGHT;
 }
 
 //! Change the argument possible_moves that is passed

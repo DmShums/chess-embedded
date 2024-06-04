@@ -1,21 +1,13 @@
 #include "Queen.h"
 #include "diagonals.h"
 #include "straight_lines.h"
+#include "utils.h"
 
 //! Use constructor of Figure
 Queen::Queen(int x, int y, bool is_white) : Figure(x, y, is_white) {}
 
-//! Return ID of a figure
-/*!
- * King - 1
- * Queen - 2
- * Bishop - 3
- * Knight - 4
- * Rook - 5
- * Pawn - 6
- */
 int Queen::figure_id() {
-    return 2;
+    return QUEEN;
 }
 
 //! Change the argument possible_moves that is passed
@@ -29,5 +21,4 @@ void Queen::possible_moves(Positions& possible_moves, Board& board) {
     check_diagonals(pos, is_white(), possible_moves, board);
     //! Check all of straight lines for possible moves
     check_straight_lines(pos, is_white(), possible_moves, board);
-
 }

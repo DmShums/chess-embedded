@@ -22,11 +22,11 @@ public:
     Board();
 
     ~Board() {
-        for (auto &i: board) {
-            for (auto &j: i) {
+        for (auto &i : board) {
+            for (auto &j : i) {
                 if (j != nullptr) {
-                    free(j);
-                };
+                    delete j;
+                }
             }
         }
     }

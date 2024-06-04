@@ -4,21 +4,13 @@
 #include "straight_lines.h"
 #include "knight_moves.h"
 #include "king_possible_move.h"
+#include "utils.h"
 
 //! Use constructor of Figure
 King::King(int x, int y, bool is_white) : Figure(x, y, is_white) {}
 
-//! Return ID of a figure
-/*!
- * King - 1
- * Queen - 2
- * Bishop - 3
- * Knight - 4
- * Rook - 5
- * Pawn - 6
- */
 int King::figure_id() {
-    return 1;
+    return KING;
 }
 
 //! Change the argument possible_moves that is passed
