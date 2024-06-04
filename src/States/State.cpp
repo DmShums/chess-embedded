@@ -1,6 +1,7 @@
 #include "State.h"
 #include "Arduino.h"
 #include "Highlight.h"
+#include "Pawn.h"
 
 void State::enter() {
     is_fig_up = false;
@@ -38,6 +39,12 @@ bool State::process() {
 
             if (p.x == init_fig_pos.x and p.y == init_fig_pos.y) {
                 // The fig is put back
+
+                Figure* fig = board.cell_value(p.x, p.y);
+                if (fig->figure_id() == 6) { 
+                    Pawn* pawn = static_cast<Pawn*>(fig);
+                    pawn->is_at_starting_position = true;
+                }
 
                 // The move passes to other side
                 return !is_white;
