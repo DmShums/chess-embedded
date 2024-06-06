@@ -25,9 +25,9 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
 
         // Move two steps forward from the starting position
         if (check_out_of_bounds(pos.x + 2 * forward_direction, pos.y) and
-            is_at_starting_position && board.cell_value(pos.x + 2 * forward_direction, pos.y) == nullptr) {
+            getIsAtStartingPosition() && board.cell_value(pos.x + 2 * forward_direction, pos.y) == nullptr) {
             possible_moves.add_pos(pos.x + 2 * forward_direction, pos.y);
-            is_at_starting_position = false;
+            setIsAtStartingPosition(false);
         }
     }
 
@@ -48,7 +48,7 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
     // left side en passant
     // if it is on the same horizontal line should it look like this?
     // add board.cell_value(pos.x, pos.y - 1)->two_step_move
-    if (!is_at_starting_position &&
+    if (!getIsAtStartingPosition() &&
         check_out_of_bounds(pos.x, pos.y - 1) and
         board.cell_value(pos.x, pos.y - 1) != nullptr &&
         board.cell_value(pos.x, pos.y - 1)->is_white() != is_white() &&
@@ -59,7 +59,7 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
     }
 
     // right side en passant
-    if (!is_at_starting_position &&
+    if (!getIsAtStartingPosition() &&
         check_out_of_bounds(pos.x, pos.y + 1) and
         board.cell_value(pos.x, pos.y + 1) != nullptr &&
         board.cell_value(pos.x, pos.y + 1)->is_white() != is_white() &&
@@ -68,4 +68,12 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
             possible_moves.add_pos(pos.x + forward_direction, pos.y + 1);
         }
     }
+}
+
+bool Pawn::getIsAtStartingPosition() const {
+    return is_at_starting_position;
+}
+
+void Pawn::setIsAtStartingPosition(bool isAtStartingPosition) {
+    is_at_starting_position = isAtStartingPosition;
 }

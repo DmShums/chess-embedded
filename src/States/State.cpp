@@ -43,7 +43,7 @@ bool State::process() {
                 Figure* fig = board.cell_value(p.x, p.y);
                 if (fig->figure_id() == 6) { 
                     Pawn* pawn = static_cast<Pawn*>(fig);
-                    pawn->is_at_starting_position = true;
+                    pawn->setIsAtStartingPosition(true);
                 }
 
                 // The move passes to other side
