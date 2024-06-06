@@ -2,6 +2,7 @@
 #include "Arduino.h"
 #include "Highlight.h"
 #include "Pawn.h"
+#include "utils.h"
 
 void State::enter() {
     is_fig_up = false;
@@ -41,7 +42,7 @@ bool State::process() {
                 // The fig is put back
 
                 Figure* fig = board.cell_value(p.x, p.y);
-                if (fig->figure_id() == 6) { 
+                if (fig->figure_id() == PAWN) { 
                     Pawn* pawn = static_cast<Pawn*>(fig);
                     pawn->setIsAtStartingPosition(true);
                 }
