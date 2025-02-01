@@ -4,11 +4,12 @@
 
 #include "Figure.h"
 
-class Rook: public Figure {
+class Rook final : public Figure {
 public:
     Rook(int x, int y, bool is_white);
 
     void possible_moves(Positions &possible_moves, Board &board) override;
+
     int figure_id() override;
 };
 

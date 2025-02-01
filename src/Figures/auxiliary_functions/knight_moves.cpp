@@ -1,6 +1,6 @@
 #include "knight_moves.h"
 
-void check_knight_moves(pos pos, bool is_white, Positions& possible_moves, Board& board) {
+void check_knight_moves(pos pos, bool is_white, Positions &possible_moves, Board &board) {
     //! Const (move of a knight consist of such moves)
     int COEFF_1 = 1;
     int COEFF_2 = 2;
@@ -87,7 +87,7 @@ void check_knight_moves(pos pos, bool is_white, Positions& possible_moves, Board
         if (board.cell_value(pos.x - COEFF_2, pos.y + COEFF_1) == nullptr) {
             //! Add a possible move
             possible_moves.add_pos(pos.x - COEFF_2, pos.y + COEFF_1);
-        } else if (board.cell_value(pos.x - COEFF_2, pos.y + COEFF_1)->is_white() != is_white){
+        } else if (board.cell_value(pos.x - COEFF_2, pos.y + COEFF_1)->is_white() != is_white) {
             //! Add a possible move
             possible_moves.add_pos(pos.x - COEFF_2, pos.y + COEFF_1);
         }

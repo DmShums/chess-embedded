@@ -4,7 +4,6 @@
 
 #include "pos.h"
 #include "Figure.h"
-//#include <stdlib.h>
 
 #include "State.h"
 
@@ -13,26 +12,20 @@ class State;
 
 class Board {
 private:
-    Figure *board[8][8];
-    Figure* lifted_fig;
+    Figure *board[8][8]{};
+    Figure *lifted_fig = nullptr;
 
 public:
-    bool is_white = true;
-
     Board();
 
     ~Board() {
-        for (auto &i : board) {
-            for (auto &j : i) {
-                if (j != nullptr) {
-                    delete j;
-                }
+        for (auto &row: board) {
+            for (auto &cell: row) {
+                    delete cell;
             }
         }
     }
 
-    // Print the chessboard to the console
-//    void print_board();
     void make_move(pos current, pos new_position);
 
     void set_figure(pos current, pos new_position);
@@ -41,19 +34,21 @@ public:
 
     void init_board();
 
-    Figure* get_lifted();
+    Figure *get_lifted() const;
 
-    void lift_figure(pos position, State* state);
+    void lift_figure(pos position, State *state);
 
-    void lower_figure(pos position, State* state);
+    void lower_figure(pos position, State *state);
 
-    void toggle_cell(pos position, State* state);
+    void toggle_cell(pos position, State *state);
 
 
     void add_fig(pos position, Figure *fig);
 
+    Figure *operator[](const pos &position) const;
+
     // Return Figure at the position or ptrnull
-    Figure *cell_value(int x, int y);
+    Figure *cell_value(int x, int y) const;
 };
 
 

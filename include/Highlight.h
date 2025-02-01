@@ -16,10 +16,13 @@
 extern CRGB leds[NUM_LEDS];
 
 namespace highlight {
- void hint_on(Positions& p_moves, Board& board);
- void turn_all_red();
- void reset();
- void show();
+    void hint_on(Positions &p_moves, Board &board);
+
+    void turn_all_red();
+
+    void reset();
+
+    void show();
 };
 
 

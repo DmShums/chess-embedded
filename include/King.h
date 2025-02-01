@@ -4,11 +4,16 @@
 
 #include "Figure.h"
 
-class King: public Figure {
+class King final : public Figure {
 public:
     King(int x, int y, bool is_white);
 
-    //! Change the argument possible_moves that is passed
+    /**
+     * Changes the argument possible_moves that is passed
+     *
+     * @param possible_moves - array of pos'
+     * @param board
+     */
     void possible_moves(Positions &possible_moves, Board &board) override;
     int figure_id() override;
 };

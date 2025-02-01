@@ -11,7 +11,7 @@
 #include "FastLED.h"
 
 
-Positions poses = Positions(64);
+auto poses = Positions();
 Board board = Board();
 State white_state = State(board, poses, true);
 State black_state = State(board, poses, false);
@@ -22,9 +22,9 @@ bool next_state = true;
 
 
 void setup() {
-//    board.init_board();
+    //    board.init_board();
     Serial.begin(9600);
-    FastLED.addLeds<WS2812B, LED_PIN, RGB>(leds, NUM_LEDS);
+    CFastLED::addLeds<WS2812B, LED_PIN, RGB>(leds, NUM_LEDS);
     FastLED.setMaxPowerInVoltsAndMilliamps(5, 500);
     FastLED.setBrightness(100);
     FastLED.clear();
@@ -36,13 +36,13 @@ void setup() {
     pinMode(S1, OUTPUT); //! 2nd bit
     pinMode(S2, OUTPUT); //! 3rd bit
 
-    for (int i = I0; i < I0 + 7; ++i) { //! Go through all rows (3-10 pins in a row)
+    for (int i = I0; i < I0 + 7; ++i) {
+        //! Go through all rows (3-10 pins in a row)
         pinMode(i, INPUT);
     }
-//    Serial.print("---------------------");
+    //    Serial.print("---------------------");
 
     current_state->enter(); //! All figures are down
-
 }
 
 void loop() {
@@ -61,21 +61,20 @@ void loop() {
 
     board.toggle_cell(fig_pos, current_state);
 
-// ------------------
+    // ------------------
 
-//    curr_state = next_state; //! Default true (white goes first)
-//    current_state->enter();
-//    next_state = current_state->process();
-//    delay(50);
-//    if (curr_state != next_state) {
-//        if (!next_state) {
-//            current_state = &black_state;
-//            current_state->enter();
-//        }
-//        else {
-//            current_state = &white_state;
-//            current_state->enter();
-//        }
-//    }
-
+    //    curr_state = next_state; //! Default true (white goes first)
+    //    current_state->enter();
+    //    next_state = current_state->process();
+    //    delay(50);
+    //    if (curr_state != next_state) {
+    //        if (!next_state) {
+    //            current_state = &black_state;
+    //            current_state->enter();
+    //        }
+    //        else {
+    //            current_state = &white_state;
+    //            current_state->enter();
+    //        }
+    //    }
 }

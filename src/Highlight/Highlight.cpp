@@ -24,14 +24,12 @@ void highlight::reset() {
 }
 
 void highlight::hint_on(Positions& p_moves, Board& board) {
-    int coef;
-    int led_idx;
     for (int i = 0; i < p_moves.get_size(); ++i) {
-        led_idx = p_moves.get_pos(i).x + p_moves.get_pos(i).y * 8;
+        const int led_idx = p_moves.get_pos(i).x + p_moves.get_pos(i).y * 8;
         if (board.cell_value(p_moves.get_pos(i).x, p_moves.get_pos(i).y) != nullptr) {
             leds[led_idx] = mistake_color;
         } else {
-            coef = ((led_idx / 8 + led_idx % 8) % 2)? -5 : 5;
+            int coef = ((led_idx / 8 + led_idx % 8) % 2) ? -5 : 5;
             leds[led_idx] = CRGB(pm_color_g + coef, pm_color_r + coef, pm_color_b + coef);
         }
     }
@@ -41,8 +39,8 @@ void highlight::hint_on(Positions& p_moves, Board& board) {
 }
 
 void highlight::turn_all_red() {
-    for (int i = 0; i < NUM_LEDS; ++i) {
-        leds[i] = mistake_color;
+    for (auto & led : leds) {
+        led = mistake_color;
     }
 
 //    FastLED.show();

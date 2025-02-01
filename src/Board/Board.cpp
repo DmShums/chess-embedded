@@ -7,8 +7,6 @@
 #include "Pawn.h"
 
 #include "State.h"
-
-#include "Arduino.h"
 #include "Highlight.h"
 
 Board::Board() {
@@ -25,9 +23,10 @@ void Board::init_board() {
 
     lifted_fig = nullptr;
 
-    for (int i = 0; i < 8; ++i) {
-        for (int j = 0; j < 8; ++j) {
-            board[i][j] = nullptr;
+    // Set empty spots
+    for (auto & row : board) {
+        for (auto & cell : row) {
+            cell = nullptr;
         }
     }
 
@@ -41,26 +40,26 @@ void Board::init_board() {
 //    board[0][3] = new King(0, 3, true);
     board[0][4] = new Queen(0, 4, true);
     board[0][5] = new Bishop(0, 5, true);
-//    board[0][6] = new Knight(0, 6, true);
+    board[0][6] = new Knight(0, 6, true);
     board[0][7] = new Rook(0, 7, true);
 
-    // Initialize the white pawns
-    for (int col = 0; col < 8; col++) {
-        board[1][col] = new Pawn(1, col, true);
-    }
+    // // Initialize the white pawns
+    // for (int col = 0; col < 8; col++) {
+    //     board[1][col] = new Pawn(1, col, true);
+    // }
 
     // Initialize the black figures
-    board[7][0] = new Rook(7, 0, false);
-//    board[7][1] = new Knight(7, 1, false);
-    board[7][2] = new Bishop(7, 2, false);
-    board[7][3] = new King(7, 3, false);
-    board[7][4] = new Queen(7, 4, false);
-    board[7][5] = new Bishop(7, 5, false);
-//    board[7][6] = new Knight(7, 6, false);
-    board[7][7] = new Rook(7, 7, false);
+    //     board[7][0] = new Rook(7, 0, false);
+    // //    board[7][1] = new Knight(7, 1, false);
+    //     board[7][2] = new Bishop(7, 2, false);
+    //     board[7][3] = new King(7, 3, false);
+    //     board[7][4] = new Queen(7, 4, false);
+    //     board[7][5] = new Bishop(7, 5, false);
+    // //    board[7][6] = new Knight(7, 6, false);
+    //     board[7][7] = new Rook(7, 7, false);
 
     // Initialize the black pawns
-    for (int col = 0; col < 8; col++) {
+    for (int col = 3; col < 6; col++) {
         board[6][col] = new Pawn(6, col, false);
     }
 
@@ -73,55 +72,31 @@ void Board::init_board() {
 }
 
 
-// Temporary function to print board. I have a bit changed it, so it prints a number of each row
-// void Board::print_board() {
-//     for (int row = 0; row < 8; row++) {
-//         std::cout << row << " ";
-//         for (int col = 0; col < 8; col++) {
-//             std::cout << ((board[row][col] == nullptr) ? 0: board[row][col]->figure_id()) << ((col == 7) ? "" : "_");
-//         }
-//         std::cout << std::endl;
-//     }
-// }
-
 // Return Figure at the position or ptrnull
-Figure *Board::cell_value(int x, int y) {
+Figure *Board::cell_value(const int x, const int y) const {
     return board[x][y];
 }
 
-void Board::make_move(pos current, pos new_position) {
-    if (is_white) {
+void Board::make_move(const pos current, const pos new_position) {
+    // check if figure exists on the current cell
+    if (board[current.x][current.y] != nullptr) {
         // check if figure exists on the current cell
-        if (board[current.x][current.y] != nullptr) {
-            // check if figure exists on the current cell
-            if (board[new_position.x][new_position.y] == nullptr) {
-                set_figure(current, new_position);
-                delete_figure(current);
-            }
-            is_white = false;
-        }
-    } else {
-        // check if figure exists on the current cell
-        if (board[current.x][current.y] != nullptr) {
-            // check if figure exists on the current cell
-            if (board[new_position.x][new_position.y] == nullptr) {
-                set_figure(current, new_position);
-                delete_figure(current);
-            }
-            is_white = true;
+        if (board[new_position.x][new_position.y] == nullptr) {
+            set_figure(current, new_position);
+            delete_figure(current);
         }
     }
 }
 
-void Board::set_figure(pos current, pos new_position) {
+void Board::set_figure(const pos current, const pos new_position) {
     board[new_position.x][new_position.y] = board[current.x][current.y];
 }
 
-void Board::delete_figure(pos position) {
+void Board::delete_figure(const pos position) {
     board[position.x][position.y] = nullptr;
 }
 
-Figure *Board::get_lifted() {
+Figure *Board::get_lifted() const {
     return lifted_fig;
 }
 
@@ -130,7 +105,7 @@ void Board::lift_figure(pos position, State* state) {
     lifted_fig = board[position.x][position.y];
     board[position.x][position.y] = nullptr;
 
-    Positions possible_moves = Positions(64);
+    auto possible_moves = Positions();
     lifted_fig->possible_moves(possible_moves, *this);
     highlight::hint_on(possible_moves, *this);
     highlight::show();
@@ -156,4 +131,8 @@ void Board::toggle_cell(pos position, State* state) {
     } else {
         lift_figure(position, state);
     }
+}
+
+Figure *Board::operator[](const pos &position) const {
+    return board[position.x][position.y];
 }

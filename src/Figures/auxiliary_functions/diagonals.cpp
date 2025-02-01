@@ -1,7 +1,7 @@
 #include "diagonals.h"
 
 //! Check diagonals
-void check_diagonals(pos pos, bool is_white, Positions& possible_moves, Board& board){
+void check_diagonals(pos pos, bool is_white, Positions &possible_moves, Board &board) {
     //! Right down diagonal
     int coeff = 1;
     while (true) {

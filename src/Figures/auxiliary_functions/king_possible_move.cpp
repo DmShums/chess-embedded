@@ -15,7 +15,7 @@
 //! enemy_positions - Positions (class) of positions we have to check for an enemy
 bool is_possible_move(pos position, bool is_white, Positions &enemy_positions, Board &board) {
     //! For possible moves of an enemy
-    Positions pos_moves = Positions(64);
+    Positions pos_moves = Positions();
 
     //! (1)
     for (int i = 0; i < enemy_positions.get_size(); i++) {

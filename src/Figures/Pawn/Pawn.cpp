@@ -1,14 +1,15 @@
 #include "Pawn.h"
 #include "utils.h"
 
-Pawn::Pawn(int x, int y, bool is_white) : Figure(x, y, is_white) {}
+Pawn::Pawn(int x, int y, bool is_white) : Figure(x, y, is_white) {
+}
 
 int Pawn::figure_id() {
     return PAWN;
 }
 
-bool check_out_of_bounds(int x, int y){
-    if(x >= 0 and x <= 7 and y >= 0 and y <=7) return true;
+bool check_out_of_bounds(int x, int y) {
+    if (x >= 0 and x <= 7 and y >= 0 and y <= 7) return true;
     return false;
 }
 
@@ -53,7 +54,7 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
         board.cell_value(pos.x, pos.y - 1) != nullptr &&
         board.cell_value(pos.x, pos.y - 1)->is_white() != is_white() &&
         board.cell_value(pos.x, pos.y - 1)->figure_id() == 6) {
-        if (((Pawn *)board.cell_value(pos.x, pos.y - 1))->two_step_move) {
+        if (((Pawn *) board.cell_value(pos.x, pos.y - 1))->two_step_move) {
             possible_moves.add_pos(pos.x + forward_direction, pos.y - 1);
         }
     }
@@ -64,7 +65,7 @@ void Pawn::possible_moves(Positions &possible_moves, Board &board) {
         board.cell_value(pos.x, pos.y + 1) != nullptr &&
         board.cell_value(pos.x, pos.y + 1)->is_white() != is_white() &&
         board.cell_value(pos.x, pos.y + 1)->figure_id() == 6) {
-        if (((Pawn *)board.cell_value(pos.x, pos.y + 1))->two_step_move) {
+        if (((Pawn *) board.cell_value(pos.x, pos.y + 1))->two_step_move) {
             possible_moves.add_pos(pos.x + forward_direction, pos.y + 1);
         }
     }

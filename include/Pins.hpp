@@ -1,4 +1,3 @@
-
 #ifndef CHESS_SAMPLE_PINS_HPP
 #define CHESS_SAMPLE_PINS_HPP
 
@@ -11,8 +10,6 @@
 // INPUT PINS of hall sensors
 // only the first is set, then assume they are used incrementaly (+1 from previous)
 #define I0 3
-
-
 
 
 #endif //CHESS_SAMPLE_PINS_HPP

@@ -3,6 +3,7 @@
 #include "Highlight.h"
 #include "Pawn.h"
 #include "utils.h"
+#include "Pins.hpp"
 
 void State::enter() {
     is_fig_up = false;
@@ -30,31 +31,25 @@ bool State::process() {
         highlight::hint_on(poses, board);
 
 
-
         // The move continues
         return is_white;
-
-    }
-    else {
+    } else {
         if (init_fig_pos.x != 10) {
-
             if (p.x == init_fig_pos.x and p.y == init_fig_pos.y) {
                 // The fig is put back
 
-                Figure* fig = board.cell_value(p.x, p.y);
-                if (fig->figure_id() == PAWN) { 
-                    Pawn* pawn = static_cast<Pawn*>(fig);
+                Figure *fig = board.cell_value(p.x, p.y);
+                if (fig->figure_id() == PAWN) {
+                    Pawn *pawn = static_cast<Pawn *>(fig);
                     pawn->setIsAtStartingPosition(true);
                 }
 
                 // The move passes to other side
                 return !is_white;
-            }
-            else if(board.cell_value(p.x, p.y) == nullptr) {
+            } else if (board.cell_value(p.x, p.y) == nullptr) {
                 // THE FIGURE GOT PUT HERE!!!!
                 // NEED TO MOVE HERE IN BOARD AND FIGURES
-            }
-            else {
+            } else {
                 // IDK SOMETHING BAD HAPPENED, maybe enemy fig picked up, need logic for this
             }
         }
@@ -75,8 +70,8 @@ pos State::question_sensors() {
 
         for (int i = I0; i <= I0 + 7; ++i) {
             auto val = digitalRead(i);
-            if((board.cell_value(a, i-I0) != nullptr and val == UP) or
-               (board.cell_value(a, i-I0) == nullptr and val == DOWN)){
+            if ((board.cell_value(a, i - I0) != nullptr and val == UP) or
+                (board.cell_value(a, i - I0) == nullptr and val == DOWN)) {
                 // delay for debouncing
                 delay(100);
                 return pos{a, i - I0};
@@ -85,7 +80,7 @@ pos State::question_sensors() {
     }
 
     // if nothing changed
-    return pos{10,10};
+    return pos{10, 10};
 }
 
 void State::figure_up(bool new_state) {

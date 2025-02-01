@@ -2,7 +2,7 @@
 #define CHESS_SAMPLE_POS_H
 
 // N: Save x and y
-struct pos{
+struct pos {
     int x;
     int y;
 };

@@ -1,6 +1,6 @@
 #include "straight_lines.h"
 
-void check_straight_lines(pos pos, bool is_white, Positions& possible_moves, Board& board){
+void check_straight_lines(pos pos, bool is_white, Positions &possible_moves, Board &board) {
     int coeff = 1;
 
     //! Top
@@ -53,7 +53,7 @@ void check_straight_lines(pos pos, bool is_white, Positions& possible_moves, Boa
 
     //! Left
     coeff = 1;
-    while (true){
+    while (true) {
         //! The cell is out of the board
         if ((pos.y - coeff < 0)) {
             break;

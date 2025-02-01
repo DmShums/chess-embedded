@@ -4,11 +4,12 @@
 
 #include "Figure.h"
 
-class Knight: public Figure{
+class Knight final : public Figure {
 public:
     Knight(int x, int y, bool is_white);
 
-    void possible_moves(Positions& possible_moves, Board& board) override;
+    void possible_moves(Positions &possible_moves, Board &board) override;
+
     int figure_id() override;
 };
 
