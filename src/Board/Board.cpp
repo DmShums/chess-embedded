@@ -30,14 +30,11 @@ void Board::init_board() {
         }
     }
 
-//    board[0][0] = new Knight(0, 0, true); //! old for v1
-//    board[2][1] = new Knight(2, 1, false);
-
     // Initialize the white figures
-//    board[0][0] = new Rook(0, 0, true); //! no magnits
-//    board[0][1] = new Knight(0, 1, true);
-//    board[0][2] = new Bishop(0, 2, true);
-//    board[0][3] = new King(0, 3, true);
+    //    board[0][0] = new Rook(0, 0, true); //! no magnits
+    //    board[0][1] = new Knight(0, 1, true);
+    //    board[0][2] = new Bishop(0, 2, true);
+    //    board[0][3] = new King(0, 3, true);
     board[0][4] = new Queen(0, 4, true);
     board[0][5] = new Bishop(0, 5, true);
     board[0][6] = new Knight(0, 6, true);
@@ -62,13 +59,12 @@ void Board::init_board() {
     for (int col = 3; col < 6; col++) {
         board[6][col] = new Pawn(6, col, false);
     }
-
     // Initialize the empty positions
-//    for (int row = 2; row < 6; row++) {
-//        for (int col = 0; col < 8; col++) {
-//            board[row][col] = nullptr;
-//        }
-//    }
+    //    for (int row = 2; row < 6; row++) {
+    //        for (int col = 0; col < 8; col++) {
+    //            board[row][col] = nullptr;
+    //        }
+    //    }
 }
 
 
@@ -100,7 +96,7 @@ Figure *Board::get_lifted() const {
     return lifted_fig;
 }
 
-void Board::lift_figure(pos position, State* state) {
+void Board::lift_figure(const pos position, State *state) {
     state->figure_up(true);
     lifted_fig = board[position.x][position.y];
     board[position.x][position.y] = nullptr;
@@ -111,7 +107,7 @@ void Board::lift_figure(pos position, State* state) {
     highlight::show();
 }
 
-void Board::lower_figure(pos position, State* state) {
+void Board::lower_figure(const pos position, State *state) {
     state->figure_up(false);
     board[position.x][position.y] = lifted_fig;
     lifted_fig->new_position(position.x, position.y);
@@ -120,7 +116,7 @@ void Board::lower_figure(pos position, State* state) {
     highlight::show();
 }
 
-void Board::toggle_cell(pos position, State* state) {
+void Board::toggle_cell(const pos position, State *state) {
     highlight::reset();
     if (state->get_bool_fig_up()) {
         if (cell_value(position.x, position.y) == nullptr) {

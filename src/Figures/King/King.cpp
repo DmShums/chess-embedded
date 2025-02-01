@@ -20,9 +20,7 @@ void King::possible_moves(Positions &possible_moves, Board &board) {
     //! Save the position of the King
     auto king_pos = get_position();
 
-    //! Save positions, we have to check for an enemy
-    //! Capacity is 36 bcs is the number of cells on straight lines, diagonals and possible moves of a Knight
-    Positions enemy_positions = Positions(36);
+    Positions enemy_positions = Positions();
 
     //! Current position of the King
     //! We will change it to look around the King (+- 1 cell)

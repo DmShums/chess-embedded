@@ -15,6 +15,11 @@ public:
      * @param board
      */
     void possible_moves(Positions &possible_moves, Board &board) override;
+
+    /**
+     *
+     * @return
+     */
     int figure_id() override;
 };
 
